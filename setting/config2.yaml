@@ -1,0 +1,36 @@
+data:
+  dataset: ADNI
+  batch_size: 64
+  val_batch_size: 64
+  train_set: 0.8
+  val_set: 0.2
+  node_feature: ./data/pearson.npy
+  time_seires: ./data/data.npy
+  label: ./data/label.npy
+
+
+model:
+  type: mlcgcn
+  embedding_size: 64
+  window_size: 5
+  num_trans_layers: 12
+  num_heads: 8
+  roi_num: 273
+  node_feature_dim: 273
+  time_series: 130
+  out_size: 4
+
+train:
+  method: normal
+  lr: 3.0e-5
+  weight_decay: 1.0e-4
+  epochs: 300
+  optimizer: adamw
+
+  warm_up: true
+  warm_up_step: 0.1
+  group_loss: true
+  group_loss_weight: 1.0
+  sparsity_loss: false
+  sparsity_loss_weight: 1.0e-4
+  log_folder: result
